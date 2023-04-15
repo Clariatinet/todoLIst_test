@@ -15,12 +15,12 @@ const App = () => {
     },
     {
       id: uuidv4(),
-      title: '튤립',
+      title: '백합',
       active: true,
     },
     {
       id: uuidv4(),
-      title: '백합',
+      title: '튤립',
       active: false,
     },
   ]);
@@ -40,13 +40,30 @@ const App = () => {
       })
     );
   };
+  const switchTodo = (id) => {
+    setTodoList(
+      todoList.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, active: !todo.active };
+        } else {
+          return todo;
+        }
+      })
+    );
+  };
   return (
     <div>
       <input type='text' value={text} onChange={onChange} />
       <button onClick={addTodo}>추가</button>
       {todoList.map((todo) => {
         return (
-          <div>
+          <div
+            key={todo.id}
+            style={{ color: todo.active ? 'green' : 'black' }}
+            onClick={() => {
+              switchTodo(todo.id);
+            }}
+          >
             {todo.title}
             <button
               onClick={() => {
