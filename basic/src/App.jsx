@@ -57,13 +57,7 @@ const App = () => {
       <button onClick={addTodo}>추가</button>
       {todoList.map((todo) => {
         return (
-          <div
-            key={todo.id}
-            style={{ color: todo.active ? 'green' : 'black' }}
-            onClick={() => {
-              switchTodo(todo.id);
-            }}
-          >
+          <div key={todo.id} style={{ color: todo.active ? 'green' : 'black' }}>
             {todo.title}
             <button
               onClick={() => {
@@ -71,6 +65,13 @@ const App = () => {
               }}
             >
               삭제
+            </button>
+            <button
+              onClick={() => {
+                switchTodo(todo.id);
+              }}
+            >
+              변환
             </button>
           </div>
         );
